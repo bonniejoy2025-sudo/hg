@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>어휘 학습 - BLOSSOM ENGLISH</title>
+  <title>한글 어휘 학습 - KOREAN STUDY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" />
   <!-- 주아체 폰트 추가 -->
@@ -108,28 +108,34 @@
       min-height: 260px;
     }
 
+    /* 한글 단어를 보여줄 때 사용할 스타일 */
     .word-big {
       font-size: 72px;
       font-weight: 800;
       color: #b91c1c;
-      /* 표제어 영어 단어만 주아체 적용 */
+      /* 표제어 한글 단어 주아체 적용 */
       font-family: "Jua", "Pretendard Variable", -apple-system, BlinkMacSystemFont,
         system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
     }
 
+    /* 영어 뜻을 보여줄 때 사용할 스타일 */
     .meaning-big {
       font-size: 40px;
       font-weight: 700;
       color: #111827;
+      /* 영어 폰트는 기본 산세리프 */
+      font-family: "Pretendard Variable", sans-serif; 
     }
 
-    .example-en {
-      font-size: 18px;
-      color: #4b5563;
+    .example-target {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1f2937;
       margin-top: 18px;
+      font-family: "Jua", sans-serif; /* 예문도 한글 느낌 살리기 */
     }
 
-    .example-ko {
+    .example-trans {
       font-size: 16px;
       color: #6b7280;
     }
@@ -138,6 +144,7 @@
       font-size: 30px;
       font-weight: 800;
       margin-bottom: 8px;
+      font-family: "Jua", sans-serif;
     }
 
     .choices-grid {
@@ -156,7 +163,8 @@
       border-radius: 18px;
       border: 1px solid #e5e7eb;
       background: #f9fafb;
-      font-size: 16px;
+      font-size: 18px;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.12s ease;
     }
@@ -178,13 +186,14 @@
       color: #b91c1c;
     }
 
-    .sentence-en {
-      font-size: 26px;
+    .sentence-target {
+      font-size: 32px;
       font-weight: 700;
       margin-bottom: 10px;
+      font-family: "Jua", sans-serif;
     }
 
-    .sentence-ko {
+    .sentence-trans {
       font-size: 18px;
       color: #4b5563;
       margin-bottom: 18px;
@@ -203,17 +212,19 @@
       padding: 12px 16px;
       border-radius: 999px;
       border: 1px solid #d1d5db;
-      font-size: 16px;
+      font-size: 18px;
+      text-align: center;
     }
 
     /* 확인 버튼: 민트 */
     .check-btn {
-      padding: 11px 18px;
+      padding: 11px 24px;
       border-radius: 999px;
       background: #9AD7A0;
       border: none;
       color: #ffffff;
-      font-size: 14px;
+      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
       white-space: nowrap;
     }
@@ -225,13 +236,13 @@
 
     .hint-text {
       margin-top: 10px;
-      font-size: 14px;
+      font-size: 16px;
       color: #f97316;
     }
 
     .result-text {
       margin-top: 6px;
-      font-size: 14px;
+      font-size: 16px;
       color: #4b5563;
     }
 
@@ -277,18 +288,18 @@
       }
       .word-big { font-size: 54px; }
       .meaning-big { font-size: 30px; }
-      .sentence-en { font-size: 22px; }
+      .sentence-target { font-size: 24px; }
     }
   </style>
 </head>
 <body>
 <div class="page">
-  <h1 class="main-title" id="mainTitle">어휘 학습</h1>
+  <h1 class="main-title" id="mainTitle">한글 어휘 학습</h1>
 
   <div class="top-bar">
     <button class="mode-tab active" data-mode="study">📚 학습 하기</button>
     <button class="mode-tab" data-mode="meaning">✅ 뜻 찾기</button>
-    <button class="mode-tab" data-mode="english">🔤 영어 찾기</button>
+    <button class="mode-tab" data-mode="korean">🇰🇷 한글 찾기</button>
     <button class="mode-tab" data-mode="listening">🎧 듣고 찾기</button>
     <button class="mode-tab" data-mode="sentence">✏️ 문장 빈칸</button>
   </div>
@@ -307,21 +318,39 @@
   </div>
 </div>
 
-<!-- 단어 데이터 -->
-<script src="words.js"></script>
+<!-- 단어 데이터 (테스트를 위해 내부에 포함시켰습니다. 나중에 words.js를 이 형식으로 수정하세요) -->
+<script>
+    // 샘플 데이터입니다. 기존 words.js 대신 이 구조를 사용하세요.
+    window.WORD_DB = {
+        "1-1": [
+            { word: "안녕하세요", meaning: "Hello", exampleKo: "안녕하세요, 선생님.", exampleEn: "Hello, teacher." },
+            { word: "감사합니다", meaning: "Thank you", exampleKo: "도와주셔서 감사합니다.", exampleEn: "Thank you for your help." },
+            { word: "친구", meaning: "Friend", exampleKo: "저는 좋은 친구가 많아요.", exampleEn: "I have many good friends." },
+            { word: "사랑", meaning: "Love", exampleKo: "가족을 사랑합니다.", exampleEn: "I love my family." },
+            { word: "학교", meaning: "School", exampleKo: "학교에 갑니다.", exampleEn: "I go to school." },
+            { word: "사과", meaning: "Apple", exampleKo: "맛있는 사과를 먹어요.", exampleEn: "I eat a delicious apple." },
+            { word: "물", meaning: "Water", exampleKo: "물을 마시고 싶어요.", exampleEn: "I want to drink water." },
+            { word: "책", meaning: "Book", exampleKo: "도서관에서 책을 읽어요.", exampleEn: "I read a book at the library." },
+            { word: "집", meaning: "House / Home", exampleKo: "집으로 돌아갑니다.", exampleEn: "I am going back home." },
+            { word: "한국", meaning: "Korea", exampleKo: "저는 한국에서 왔어요.", exampleEn: "I am from Korea." }
+        ]
+    };
+</script>
 
-<!-- Supabase JS -->
+<!-- 원래 words.js가 있다면 아래 주석을 풀고 사용하세요 -->
+<!-- <script src="words.js"></script> -->
+
+<!-- Supabase JS (기존 유지) -->
 <script src="https://unpkg.com/@supabase/supabase-js@2.48.0/dist/umd/supabase.js"></script>
 
 <script>
-  // ---------- Supabase 설정 ----------
+  // ---------- Supabase 설정 (기존 유지) ----------
   const SUPABASE_URL = "https://bpdisxjhhibrgfpvtlmv.supabase.co";
   const SUPABASE_ANON_KEY =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwZGlzeGpoaGlicmdmcHZ0bG12Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5NTkxODQsImV4cCI6MjA3OTUzNTE4NH0.jDZ6BGirOPuWUnt4ykjhng4PLft2ZjBuYAFzApUnlYU";
 
   const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // 학생 로그인 정보 (localStorage에 저장된 blossom_student 그대로 사용)
   let currentStudentLoginId = null;
   (function loadStudent() {
     try {
@@ -336,20 +365,19 @@
 
   // ---------- URL 파라미터 & 단어 데이터 ----------
   const params = new URLSearchParams(window.location.search);
-  let stage = params.get("stage") || "1";
   let unitKey = params.get("unit") || "1-1";
 
-  // unit=1 처럼 숫자만 오면 1-1로 보정
   if (/^\d+$/.test(unitKey)) {
     unitKey = unitKey + "-1";
   }
 
+  // WORD_DB가 없으면 빈 객체로 초기화
   const WORD_DB = window.WORD_DB || {};
   const words = WORD_DB[unitKey] || [];
   const wordCount = words.length;
 
   const mainTitle = document.getElementById("mainTitle");
-  mainTitle.textContent = `어휘 학습 ${unitKey}`;
+  mainTitle.textContent = `한글 어휘 학습 ${unitKey}`;
 
   const centerArea = document.getElementById("centerArea");
   const audioBadge = document.getElementById("audioBadge");
@@ -359,18 +387,17 @@
   const backToUnitsBtn = document.getElementById("backToUnitsBtn");
 
   let currentMode = "study";
-  let currentIndex = 0;        // 학습 모드용 인덱스
+  let currentIndex = 0;
 
-  const AUTO_QUIZ_MODES = ["meaning", "english", "listening"];
+  // 자동 진행되는 객관식 모드들
+  const AUTO_QUIZ_MODES = ["meaning", "korean", "listening"];
 
-  // 객관식 모드용 큐
-  let quizQueue = [];       // 현재 라운드에서 풀어야 할 단어 인덱스들(랜덤)
-  let quizPos = 0;          // quizQueue 안에서의 위치
-  let nextRoundQueue = [];  // 오답 모아두는 큐
+  let quizQueue = [];
+  let quizPos = 0;
+  let nextRoundQueue = [];
   let quizFinished = false;
   let answerTimer = null;
 
-  // 문장 빈칸용 랜덤 순서
   let sentenceOrder = [];
   let sentencePos = 0;
 
@@ -406,7 +433,7 @@
     }
     const base = [];
     for (let i = 0; i < wordCount; i++) base.push(i);
-    quizQueue = shuffleArray(base);  // 랜덤 순서
+    quizQueue = shuffleArray(base);
     nextRoundQueue = [];
     quizPos = 0;
     quizFinished = false;
@@ -420,34 +447,26 @@
     }
     const base = [];
     for (let i = 0; i < wordCount; i++) base.push(i);
-    sentenceOrder = shuffleArray(base);  // 랜덤 순서
+    sentenceOrder = shuffleArray(base);
     sentencePos = 0;
   }
 
-  // ✅ 결과 저장 (가장 단순 버전: 전부 맞추고 끝나면 100점으로 저장)
   async function saveVocabResultForCurrentMode() {
-    if (!currentStudentLoginId) {
-      // 학생 로그인 안 돼 있으면 그냥 연습만 하고 저장은 안 함
-      return;
-    }
+    if (!currentStudentLoginId) return;
     if (!wordCount) return;
 
     try {
       const { error } = await client.from("vocab_results").insert({
         student_login_id: currentStudentLoginId,
         unit: unitKey,
-        mode: currentMode,              // meaning / english / listening / sentence
-        correct_count: wordCount,       // 모두 맞출 때까지 시키니까 100점 처리
+        mode: currentMode,
+        correct_count: wordCount,
         total_count: wordCount,
         submitted_at: new Date().toISOString()
       });
-      if (error) {
-        console.error("vocab_results 저장 오류:", error);
-      } else {
-        console.log("vocab_results 저장 완료");
-      }
+      if (error) console.error("저장 오류:", error);
     } catch (e) {
-      console.error("vocab_results 저장 중 예외:", e);
+      console.error("저장 예외:", e);
     }
   }
 
@@ -457,15 +476,13 @@
     centerArea.innerHTML = `
       <div class="question-title">모든 문제를 다 풀었어요!</div>
       <div style="margin-top:10px;font-size:22px;color:#16a34a;font-weight:700;">
-        100점 🎉
+        참 잘했어요! 🎉
       </div>
       <div style="margin-top:12px;font-size:14px;color:#6b7280;">
         다시 연습하려면 "다시 시작"을 눌러주세요.
       </div>
     `;
     setProgress(wordCount, wordCount);
-
-    // 👉 여기서 한 번만 저장 시도
     saveVocabResultForCurrentMode();
   }
 
@@ -479,7 +496,6 @@
     quizPos++;
 
     if (quizPos >= quizQueue.length) {
-      // 한 라운드 끝
       if (nextRoundQueue.length > 0) {
         quizQueue = nextRoundQueue;
         nextRoundQueue = [];
@@ -494,10 +510,10 @@
     }
   }
 
-  // ------------ 발음 (학습 / 듣기퀴즈) ------------
+  // ------------ 발음 (한국어 TTS) ------------
 
-  const STUDY_GAP_BETWEEN_READS = 1000;  // 1차 ↔ 2차
-  const STUDY_GAP_AFTER_SECOND  = 2600;  // 2차 후 → 다음 단어
+  const STUDY_GAP_BETWEEN_READS = 1000;
+  const STUDY_GAP_AFTER_SECOND  = 2600;
 
   function speakWordTwice(word, afterSecondDone) {
     const synth = window.speechSynthesis;
@@ -510,21 +526,21 @@
     const u1 = new SpeechSynthesisUtterance(word);
     const u2 = new SpeechSynthesisUtterance(word);
 
-    u1.lang = "en-US";
-    u2.lang = "en-US";
+    // ** 중요: 한국어 설정 **
+    u1.lang = "ko-KR";
+    u2.lang = "ko-KR";
     u1.rate = 0.9;
     u2.rate = 0.9;
-    u1.pitch = 1.1;
-    u2.pitch = 1.1;
 
+    // 한국어 음성 찾기
     const voices = synth.getVoices();
-    const female = voices.find(v =>
-      v.lang.startsWith("en") &&
-      /female|woman|zira|susan|salli|joanna|linda|emma|amy/i.test(v.name)
+    const koreanVoice = voices.find(v => 
+        v.lang.includes("ko") || v.name.includes("Korea") || v.name.includes("한국")
     );
-    if (female) {
-      u1.voice = female;
-      u2.voice = female;
+    
+    if (koreanVoice) {
+      u1.voice = koreanVoice;
+      u2.voice = koreanVoice;
     }
 
     u1.onend = () => {
@@ -540,7 +556,8 @@
     synth.speak(u1);
   }
 
-  // ------------ 학습 모드 ------------
+  // ------------ 모드 1: 학습 하기 (Study) ------------
+  // 한글(크게) -> 영어 뜻 -> 한글 예문 -> 영어 번역
 
   function renderStudy() {
     stopSpeech();
@@ -550,7 +567,7 @@
     }
 
     if (!words.length) {
-      centerArea.textContent = "이 유닛에는 아직 단어가 등록되지 않았어요.";
+      centerArea.textContent = "단어 데이터가 없습니다.";
       audioBadge.style.display = "none";
       setProgress(0, 0);
       return;
@@ -562,8 +579,8 @@
     centerArea.innerHTML = `
       <div class="word-big">${item.word}</div>
       <div class="meaning-big">${item.meaning}</div>
-      <div class="example-en">${item.exampleEn}</div>
-      <div class="example-ko">${item.exampleKo}</div>
+      <div class="example-target">${item.exampleKo}</div>
+      <div class="example-trans">${item.exampleEn}</div>
     `;
     setProgress(currentIndex + 1, wordCount);
 
@@ -574,18 +591,21 @@
     });
   }
 
-  // ------------ 객관식 공통 (뜻찾기 / 영어찾기 / 듣고찾기) ------------
+  // ------------ 객관식 공통 ------------
 
   function makeChoices(correctIdx) {
     const indices = [...Array(wordCount).keys()];
-
     const others = indices.filter(i => i !== correctIdx);
+    
+    // 오답 셔플
     for (let i = others.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [others[i], others[j]] = [others[j], others[i]];
     }
     const pick = others.slice(0, 3);
     const all = [correctIdx, ...pick];
+    
+    // 전체 보기 셔플
     for (let i = all.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [all[i], all[j]] = [all[j], all[i]];
@@ -601,9 +621,7 @@
     }
 
     if (!words.length) {
-      centerArea.textContent = "이 유닛에는 아직 단어가 등록되지 않았어요.";
-      audioBadge.style.display = "none";
-      setProgress(0, 0);
+      centerArea.textContent = "단어 데이터가 없습니다.";
       return false;
     }
 
@@ -617,28 +635,27 @@
       showQuizFinished();
       return false;
     }
-
     return true;
   }
 
-  // ------------ 뜻 찾기 ------------
+  // ------------ 모드 2: 뜻 찾기 (Meaning) ------------
+  // 한글 단어 보여줌 -> 영어 뜻 고르기
 
   function renderMeaningQuiz() {
     if (!prepareQuizQuestionBase()) return;
 
     audioBadge.style.display = "none";
-
     const qIndex = quizQueue[quizPos];
     const item = words[qIndex];
 
     centerArea.innerHTML = `
-      <div class="question-title">${item.word}</div>
+      <div class="question-title" style="font-size: 50px; color: #b91c1c;">${item.word}</div>
+      <div style="margin-bottom: 20px; color: #6b7280;">뜻을 골라보세요</div>
     `;
 
     const grid = document.createElement("div");
     grid.className = "choices-grid";
     centerArea.appendChild(grid);
-
     centerArea.dataset.answered = "false";
 
     const choices = makeChoices(qIndex);
@@ -646,7 +663,8 @@
       const choice = words[idx];
       const btn = document.createElement("button");
       btn.className = "choice-btn";
-      btn.textContent = choice.meaning;
+      btn.textContent = choice.meaning; // 영어 뜻이 보기
+      btn.style.fontFamily = '"Pretendard Variable", sans-serif'; // 영어 폰트
       grid.appendChild(btn);
 
       btn.onclick = () => {
@@ -662,24 +680,24 @@
     }, 7000);
   }
 
-  // ------------ 영어 찾기 ------------
+  // ------------ 모드 3: 한글 찾기 (Korean) ------------
+  // 영어 뜻 보여줌 -> 한글 단어 고르기
 
-  function renderEnglishQuiz() {
+  function renderKoreanQuiz() {
     if (!prepareQuizQuestionBase()) return;
 
     audioBadge.style.display = "none";
-
     const qIndex = quizQueue[quizPos];
     const item = words[qIndex];
 
     centerArea.innerHTML = `
       <div class="question-title">${item.meaning}</div>
+      <div style="margin-bottom: 20px; color: #6b7280;">알맞은 한글 단어를 고르세요</div>
     `;
 
     const grid = document.createElement("div");
     grid.className = "choices-grid";
     centerArea.appendChild(grid);
-
     centerArea.dataset.answered = "false";
 
     const choices = makeChoices(qIndex);
@@ -687,7 +705,9 @@
       const choice = words[idx];
       const btn = document.createElement("button");
       btn.className = "choice-btn";
-      btn.textContent = choice.word;
+      btn.textContent = choice.word; // 한글 단어가 보기
+      btn.style.fontFamily = '"Jua", sans-serif'; // 한글 폰트
+      btn.style.fontSize = "22px";
       grid.appendChild(btn);
 
       btn.onclick = () => {
@@ -703,7 +723,8 @@
     }, 7000);
   }
 
-  // ------------ 듣고 찾기 ------------
+  // ------------ 모드 4: 듣고 찾기 (Listening) ------------
+  // 한글 발음 듣기 -> 영어 뜻 고르기
 
   function renderListeningQuiz() {
     if (!prepareQuizQuestionBase()) return;
@@ -714,13 +735,13 @@
     audioBadge.style.display = "none";
 
     centerArea.innerHTML = `
-      <div class="question-title">발음을 듣고 어떤 단어인지 맞혀 보아요.</div>
+      <div class="question-title">👂 잘 듣고 뜻을 맞혀보세요</div>
+      <button onclick="speakWordTwice('${item.word}')" style="margin: 10px 0 20px; padding: 10px 20px; border-radius: 20px; border:none; background: #e5edff; color: #1d4ed8; font-weight:bold; cursor:pointer;">🔊 다시 듣기</button>
     `;
 
     const grid = document.createElement("div");
     grid.className = "choices-grid";
     centerArea.appendChild(grid);
-
     centerArea.dataset.answered = "false";
 
     const choices = makeChoices(qIndex);
@@ -728,7 +749,8 @@
       const choice = words[idx];
       const btn = document.createElement("button");
       btn.className = "choice-btn";
-      btn.textContent = choice.meaning;
+      btn.textContent = choice.meaning; // 영어 뜻이 정답
+      btn.style.fontFamily = '"Pretendard Variable", sans-serif';
       grid.appendChild(btn);
 
       btn.onclick = () => {
@@ -746,11 +768,10 @@
     }, 7000);
   }
 
-  // ------------ 객관식 정답 처리 공통 ------------
+  // ------------ 정답 처리 (공통) ------------
 
   function handleQuizAnswer(qIndex, isCorrect, clickedBtn, grid, correctText) {
     if (!AUTO_QUIZ_MODES.includes(currentMode)) return;
-
     if (centerArea.dataset.answered === "true") return;
     centerArea.dataset.answered = "true";
 
@@ -772,10 +793,11 @@
 
     setTimeout(() => {
       goNextQuestion(isCorrect ? null : qIndex);
-    }, 900);
+    }, 1200); // 1.2초 후 다음 문제
   }
 
-  // ------------ 문장 빈칸 ------------
+  // ------------ 모드 5: 문장 빈칸 (Sentence) ------------
+  // 한글 예문에 빈칸 뚫기 -> 한글 단어 입력
 
   function renderSentenceQuiz() {
     stopSpeech();
@@ -786,15 +808,12 @@
     audioBadge.style.display = "none";
 
     if (!words.length) {
-      centerArea.textContent = "이 유닛에는 아직 단어가 등록되지 않았어요.";
+      centerArea.textContent = "단어 데이터가 없습니다.";
       setProgress(0, 0);
       return;
     }
 
-    if (!sentenceOrder.length) {
-      resetSentenceFlow();
-    }
-
+    if (!sentenceOrder.length) resetSentenceFlow();
     if (sentencePos >= wordCount) {
       showQuizFinished();
       return;
@@ -802,11 +821,13 @@
 
     const wordIndex = sentenceOrder[sentencePos];
     const item = words[wordIndex];
-    const blanked = item.exampleEn.replace(new RegExp(item.word, "i"), "____");
+    
+    // 한글 예문에서 해당 단어를 ____로 변경
+    const blanked = item.exampleKo.replace(new RegExp(item.word, "g"), "____");
 
     centerArea.innerHTML = `
-      <div class="sentence-en">${blanked}</div>
-      <div class="sentence-ko">${item.exampleKo}</div>
+      <div class="sentence-target">${blanked}</div>
+      <div class="sentence-trans">${item.exampleEn}</div>
     `;
 
     const row = document.createElement("div");
@@ -814,7 +835,8 @@
 
     const input = document.createElement("input");
     input.className = "sentence-input";
-    input.placeholder = "여기에 영어 단어를 써 보세요";
+    input.placeholder = "한글 단어를 입력하세요";
+    input.autocomplete = "off";
 
     const checkBtn = document.createElement("button");
     checkBtn.className = "check-btn";
@@ -835,8 +857,8 @@
     setProgress(sentencePos + 1, wordCount);
 
     function checkAnswer() {
-      const v = input.value.trim().toLowerCase();
-      const answer = item.word.toLowerCase();
+      const v = input.value.trim();
+      const answer = item.word; // 한글 단어가 정답
       if (!v) return;
 
       if (v === answer) {
@@ -852,23 +874,22 @@
             sentencePos = wordCount;
             showQuizFinished();
           }
-        }, 900);
+        }, 1000);
       } else {
         input.style.background = "#fef2f2";
         input.style.borderColor = "#f97373";
         const first = answer.charAt(0);
-        hintArea.textContent = `힌트: "${first}" 로 시작해요.`;
+        hintArea.textContent = `힌트: "${first}" (으)로 시작해요.`;
         resultArea.textContent = "다시 한 번 생각해 볼까요?";
+        input.value = "";
+        input.focus();
       }
     }
 
     checkBtn.onclick = checkAnswer;
 
     input.addEventListener("keydown", (e) => {
-      const isEnter = e.key === "Enter" || e.code === "Enter";
-      const isSpace = e.key === " " || e.code === "Space";
-
-      if (isEnter || isSpace) {
+      if (e.key === "Enter") {
         e.preventDefault();
         checkAnswer();
       }
@@ -884,19 +905,12 @@
       tab.classList.toggle("active", tab.dataset.mode === currentMode)
     );
 
-    if (!wordCount) {
-      centerArea.textContent = "이 유닛에는 아직 단어가 등록되지 않았어요.";
-      audioBadge.style.display = "none";
-      setProgress(0, 0);
-      return;
-    }
-
     if (currentMode === "study") {
       renderStudy();
     } else if (currentMode === "meaning") {
       renderMeaningQuiz();
-    } else if (currentMode === "english") {
-      renderEnglishQuiz();
+    } else if (currentMode === "korean") {
+      renderKoreanQuiz();
     } else if (currentMode === "listening") {
       renderListeningQuiz();
     } else if (currentMode === "sentence") {
@@ -907,19 +921,13 @@
   modeTabs.forEach(tab => {
     tab.onclick = () => {
       stopSpeech();
-      if (answerTimer) {
-        clearTimeout(answerTimer);
-        answerTimer = null;
-      }
+      if (answerTimer) clearTimeout(answerTimer);
+      
       currentMode = tab.dataset.mode;
       currentIndex = 0;
 
-      if (AUTO_QUIZ_MODES.includes(currentMode)) {
-        resetQuizFlow();
-      }
-      if (currentMode === "sentence") {
-        resetSentenceFlow();
-      }
+      if (AUTO_QUIZ_MODES.includes(currentMode)) resetQuizFlow();
+      if (currentMode === "sentence") resetSentenceFlow();
 
       renderCurrent();
     };
@@ -927,10 +935,7 @@
 
   modeResetBtn.onclick = () => {
     stopSpeech();
-    if (answerTimer) {
-      clearTimeout(answerTimer);
-      answerTimer = null;
-    }
+    if (answerTimer) clearTimeout(answerTimer);
     currentIndex = 0;
     resetQuizFlow();
     resetSentenceFlow();
@@ -941,8 +946,14 @@
     window.history.back();
   };
 
-  // 최초 렌더링
+  // 최초 실행
+  // 브라우저가 음성 목록을 로드하는 데 시간이 걸릴 수 있으므로 잠시 대기
+  if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = () => {};
+  }
+  
   renderCurrent();
+
 </script>
 </body>
 </html>
